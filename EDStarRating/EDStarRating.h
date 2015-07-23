@@ -9,22 +9,10 @@
 
 
 #import <Availability.h>
-#ifdef __MAC_OS_X_VERSION_MAX_ALLOWED
-#define EDSTAR_MACOSX 1
-#define EDSTAR_IOS    0
-#else
-#define EDSTAR_MACOSX 0
-#define EDSTAR_IOS    1
-#endif
-
-
-
-#if EDSTAR_MACOSX
-#import <Cocoa/Cocoa.h>
-#else
 #import <UIKit/UIKit.h>
-#endif
 
+#define EDSTAR_IOS    0
+#define EDSTAR_IOS    1
 
 enum {
     EDStarRatingDisplayFull=0,
@@ -35,11 +23,6 @@ typedef NSUInteger EDStarRatingDisplayMode;
 typedef void(^EDStarRatingReturnBlock)(float rating);
 @protocol EDStarRatingProtocol;
 
-#if EDSTAR_MACOSX
-#define EDControl   NSControl
-typedef NSColor     EDColor;
-typedef NSImage     EDImage;
-#else
 #define EDControl   UIControl
 typedef UIColor     EDColor;
 typedef UIImage     EDImage;
@@ -48,9 +31,6 @@ typedef UIImage     EDImage;
 
 @interface EDStarRating : EDControl
 
-#if EDSTAR_MACOSX
-@property (nonatomic,strong) EDColor *backgroundColor;
-#endif
 @property (nonatomic,strong) EDImage *backgroundImage;
 @property (nonatomic,strong) EDImage *starHighlightedImage;
 @property (nonatomic,strong) EDImage *starImage;
